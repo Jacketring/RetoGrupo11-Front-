@@ -15,14 +15,12 @@ export class AuthService {
 
   constructor() {}
 
-  login(credentials: {
-    email: string;
-    password: string;
-  }): Observable<LoginResponseDto> {
-    return this.http.post<LoginResponseDto>(
-      `${this.apiUrl}/login`,
-      credentials
-    );
+  login(credentials: { email: string; password: string }): Observable<LoginResponseDto> {
+    return this.http.post<LoginResponseDto>(`${this.apiUrl}/login`, credentials);
+  }
+
+  register(data: { name: string; email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data);
   }
 
   saveToken(token: string) {
