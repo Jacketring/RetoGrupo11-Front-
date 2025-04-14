@@ -1,0 +1,68 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-6 text-center">Publicar Vacante</h2>
+      <form>
+        <!-- Nombre -->
+        <div class="mb-4">
+          <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+          <input type="text" id="nombre" placeholder="Nombre de la vacante" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        </div>
+  
+        <!-- Descripción -->
+        <div class="mb-4">
+          <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción</label>
+          <textarea id="descripcion" rows="3" placeholder="Descripción del puesto" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+        </div>
+  
+        <!-- Salario -->
+        <div class="mb-4">
+          <label for="salario" class="block text-sm font-medium text-gray-700">Salario</label>
+          <input type="number" id="salario" placeholder="Salario" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        </div>
+  
+        <!-- Detalles -->
+        <div class="mb-4">
+          <label for="detalles" class="block text-sm font-medium text-gray-700">Detalles</label>
+          <textarea id="detalles" rows="2" placeholder="Información adicional" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+        </div>
+  
+        <!-- Categoría -->
+        <div class="mb-4">
+          <label for="categoria" class="block text-sm font-medium text-gray-700">Categoría</label>
+          <select id="categoria" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            <option value="">Selecciona una categoría</option>
+            <option value="tech">Tecnología</option>
+            <option value="design">Diseño</option>
+            <option value="marketing">Marketing</option>
+          </select>
+        </div>
+  
+        <!-- Empresa -->
+        <div class="mb-4">
+          <label for="empresa" class="block text-sm font-medium text-gray-700">Empresa</label>
+          <select id="empresa" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            <option value="">Selecciona una empresa</option>
+            <option value="empresa1">Empresa 1</option>
+            <option value="empresa2">Empresa 2</option>
+          </select>
+        </div>
+  
+        <!-- Destacada (toggle) -->
+        <div class="mb-6 flex items-center">
+          <label for="destacada" class="mr-3 text-sm font-medium text-gray-700">Destacada</label>
+          <input type="checkbox" id="destacada" class="h-5 w-10 rounded-full bg-gray-300 checked:bg-blue-500 transition duration-300 focus:ring-2 focus:ring-blue-500 cursor-pointer">
+        </div>
+  
+        <!-- Botones -->
+        <div class="flex justify-between space-x-4">
+          <button type="reset" class="w-full bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+            Reset
+          </button>
+          <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Publicar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
