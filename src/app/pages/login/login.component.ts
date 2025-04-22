@@ -51,8 +51,23 @@ export class LoginComponent {
           typeof response === 'string' ? JSON.parse(response) : response;
 
         this.authService.saveToken(authResponse.token);
-        this.authService.saveRole(authResponse.rol);
-        this.router.navigate(['/home']);
+        this.authService.saveRole(authResponse.tipoRol);
+        const rol = authResponse.tipoRol;
+
+        switch (rol) {
+          case 'CLIENTE':
+            this.router.navigate(['/cliente/mis-solicitudes']);
+            break;
+          case 'EMPRESA':
+            this.router.navigate(['/empresa/mis-vacantes']);
+            break;
+          case 'ADMON':
+            this.router.navigate(['/admin']);
+            break;
+          default:
+            this.router.navigate(['/vacantes']); // fallback
+            break;
+        }
       },
       error: (err) => {
         this.error = 'Login failed. Please check your credentials.';

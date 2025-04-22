@@ -1,0 +1,13 @@
+<div class="bg-white rounded-xl shadow p-4 flex flex-col justify-between">
+    <img
+      [src]="'/assets/img/' + vacante.imagen"
+      alt="{{ vacante.nombre }}"
+      class="rounded h-40 w-full object-cover mb-4"
+    />
+    <h3 class="text-xl font-bold mb-1">{{ vacante.nombre }}</h3>
+    <p class="text-gray-600 text-sm mb-2">{{ vacante.descripcion }}</p>
+    <p class="text-sm text-gray-400">Empresa: {{ vacante.empresa }}</p>
+    <p class="text-sm text-gray-400">
+      Salario: {{ vacante.salario | currency: 'EUR' }}
+    </p>
+  </div>

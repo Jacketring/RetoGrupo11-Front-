@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginResponseDto } from '../interfaces/loginResponseDto';
+import { RegistroResponseDto } from '../interfaces/registro-response-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +20,8 @@ export class AuthService {
     return this.http.post<LoginResponseDto>(`${this.apiUrl}/login`, credentials);
   }
 
-  register(data: { name: string; email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, data);
+  register(data: any): Observable<RegistroResponseDto> {
+    return this.http.post<RegistroResponseDto>(`${this.apiUrl}/registro`, data);
   }
 
   saveToken(token: string) {
@@ -47,5 +48,21 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!this.getToken();
+  }
+
+  redirectByRole(role: string) {
+    switch (role) {
+      case 'CLIENTE':
+        this.router.navigate(['/cliente/mis-solicitudes']);
+        break;
+      case 'EMPRESA':
+        this.router.navigate(['/empresa/mis-vacantes']);
+        break;
+      case 'ADMON':
+        this.router.navigate(['/admin']);
+        break;
+      default:
+        this.router.navigate(['/vacantes']);
+    }
   }
 }

@@ -1,11 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { NavbarComponent } from "../../Components/navbar/navbar.component";
+import { FooterComponent } from "../../Components/footer/footer.component";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  imports: [NavbarComponent, FooterComponent, RouterOutlet],
 })
 export class HomeComponent implements OnInit {
   private authService = inject(AuthService);

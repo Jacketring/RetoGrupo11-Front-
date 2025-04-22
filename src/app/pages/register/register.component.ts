@@ -1,12 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { RegistroResponseDto } from '../../interfaces/registro-response-dto';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class RegisterComponent {
   registerForm!: FormGroup;
@@ -38,24 +42,38 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.invalid) {
+      console.log('Formulario inválido');
       return;
     }
 
     this.loading = true;
     this.error = null;
 
-    this.authService.register(this.registerForm.value).subscribe({
-      next: () => {
+    const { name, email, password } = this.registerForm.value;
+    const usuario = {
+      email,
+      nombre: name,
+      apellidos: 'Sin Apellidos',
+      password,
+    };
+
+    console.log('Registrando usuario...', usuario);
+
+    this.authService.register({ usuario }).subscribe({
+      next: (response: RegistroResponseDto) => {
+        console.log('Registro exitoso:', response);
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        this.error = 'Registration failed. Please check your details.';
+        this.error = 'El registro falló. Revisa los datos.';
         this.loading = false;
-        console.error('Registration error:', err);
+        console.error('Error al registrar:', err);
       },
       complete: () => {
+        console.log('Registro completo');
         this.loading = false;
       },
     });
   }
+  
 }
