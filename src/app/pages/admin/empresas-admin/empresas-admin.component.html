@@ -1,1 +1,40 @@
-<p>empresas-admin works!</p>
+<div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">Empresas registradas</h2>
+      <a routerLink="/admin/empresas/alta" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        ➕ Nueva Empresa
+      </a>
+    </div>
+  
+    @if (empresas.length > 0) {
+      <table class="w-full text-sm text-left text-gray-700">
+        <thead class="bg-gray-100 text-xs uppercase">
+          <tr>
+            <th class="px-4 py-2">Nombre</th>
+            <th class="px-4 py-2">CIF</th>
+            <th class="px-4 py-2">País</th>
+            <th class="px-4 py-2">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (empresa of empresas; track empresa.idEmpresa) {
+            <tr class="border-b hover:bg-gray-50">
+              <td class="px-4 py-2">{{ empresa.nombreEmpresa }}</td>
+              <td class="px-4 py-2">{{ empresa.cif }}</td>
+              <td class="px-4 py-2">{{ empresa.pais }}</td>
+              <td class="px-4 py-2">{{ empresa.email }}</td>
+              <td class="text-right">
+                <a [routerLink]="['/admin/empresas/editar', empresa.idEmpresa]" class="text-blue-600 hover:underline mr-4">Editar</a>
+                <button (click)="confirmarEliminar(empresa.idEmpresa)" class="text-red-600 hover:underline">
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <p class="text-gray-500">No hay empresas registradas todavía.</p>
+    }
+  </div>
+  

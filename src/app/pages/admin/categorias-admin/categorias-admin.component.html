@@ -1,1 +1,39 @@
-<p>categorias-admin works!</p>
+<div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">Categorías</h2>
+      <button (click)="crear()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        ➕ Nueva Categoría
+      </button>
+    </div>
+  
+    @if (error) {
+      <div class="bg-red-100 text-red-700 p-3 rounded">{{ error }}</div>
+    }
+  
+    @if (categorias.length > 0) {
+      <table class="w-full text-sm text-left text-gray-700">
+        <thead class="bg-gray-100 text-xs uppercase">
+          <tr>
+            <th class="px-4 py-2">Nombre</th>
+            <th class="px-4 py-2">Descripción</th>
+            <th class="px-4 py-2 text-right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (categoria of categorias; track categoria.idCategoria) {
+            <tr class="border-b hover:bg-gray-50">
+              <td class="px-4 py-2">{{ categoria.nombre }}</td>
+              <td class="px-4 py-2">{{ categoria.descripcion }}</td>
+              <td class="px-4 py-2 text-right space-x-2">
+                <button (click)="editar(categoria.idCategoria!)" class="text-blue-600 hover:underline">Editar</button>
+                <button (click)="eliminar(categoria.idCategoria!)" class="text-red-600 hover:underline">Eliminar</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <p class="text-gray-500">No hay categorías registradas.</p>
+    }
+  </div>
+  

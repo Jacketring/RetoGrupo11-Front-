@@ -1,0 +1,45 @@
+<div class="max-w-2xl mx-auto p-6 bg-white shadow-md rounded">
+    <h2 class="text-2xl font-bold mb-4">Alta de Nueva Empresa</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label>Email del usuario</label>
+        <input type="email" formControlName="email" class="input" />
+      </div>
+      <div>
+        <label>Nombre del usuario</label>
+        <input type="text" formControlName="nombreUsuario" class="input" />
+      </div>
+      <div>
+        <label>Apellidos del usuario</label>
+        <input type="text" formControlName="apellidoUsuario" class="input" />
+      </div>
+      <div>
+        <label>Nombre de la empresa</label>
+        <input type="text" formControlName="nombreEmpresa" class="input" />
+      </div>
+      <div>
+        <label>CIF</label>
+        <input type="text" formControlName="cif" class="input" />
+      </div>
+      <div>
+        <label>Dirección Fiscal</label>
+        <input type="text" formControlName="direccionFiscal" class="input" />
+      </div>
+      <div>
+        <label>País</label>
+        <input type="text" formControlName="pais" class="input" />
+      </div>
+  
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded" [disabled]="form.invalid || loading">
+        {{ loading ? 'Registrando...' : 'Registrar Empresa' }}
+      </button>
+    </form>
+  
+    @if (error) {
+      <div class="mt-4 p-3 bg-red-100 text-red-700 rounded">
+        {{ error }}
+      </div>
+    }
+  </div>
+  

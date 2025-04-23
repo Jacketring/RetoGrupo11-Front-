@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { VacanteService } from '../../services/vacante.service';
-import { VacanteResponseDto } from '../../interfaces/vacante-response-dto';
-import { VacantesCardComponent } from '../../Components/vacantes-card/vacantes-card.component';
+import { VacanteService } from '../../../services/vacante.service';
+import { VacanteResponseDto } from '../../../interfaces/vacante-response-dto';
+import { VacantesCardComponent } from '../../../Components/vacantes-card/vacantes-card.component';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 
 

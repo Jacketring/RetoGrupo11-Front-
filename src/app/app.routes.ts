@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { VacantesViewComponent } from './pages/vacantes-view/vacantes-view.component';
-import { PublicLayoutComponent } from './pages/public-layout/public-layout.component';
+import { VacantesViewComponent } from './pages/home/vacantes-view/vacantes-view.component';
+import { PublicLayoutComponent } from './pages/home/public-layout/public-layout.component';
 
 // 👇 IMPORTAR guards por rol cuando los tengas
 import { ClienteGuard } from './guards/cliente.guard';
@@ -62,8 +62,22 @@ export const routes: Routes = [
     component: HomeComponent, // o AdminLayout
     children: [
         { path: '', component: AdminHomeComponent }, // 👈 default
-        { path: 'empresas', loadComponent: () => import('./pages/admin/empresas-admin/empresas-admin.component').then(m => m.EmpresasAdminComponent) },
-        { path: 'categorias', loadComponent: () => import('./pages/admin/categorias-admin/categorias-admin.component').then(m => m.CategoriasAdminComponent) },
+        {
+          path: 'empresas',
+          children: [
+            { path: '', loadComponent: () => import('./pages/admin/empresas-admin/empresas-admin.component').then(m => m.EmpresasAdminComponent) },
+            { path: 'alta', loadComponent: () => import('./pages/admin/empresas-admin/alta-empresa-admin/alta-empresa-admin.component').then(m => m.AltaEmpresaAdminComponent) },
+            { path: 'editar/:id', loadComponent: () => import('./pages/admin/empresas-admin/editar-empresa-admin/editar-empresa-admin.component').then(m => m.EditarEmpresaAdminComponent) },
+          ],
+        },
+        {
+          path: 'categorias',
+          children: [
+            { path: '', loadComponent: () => import('./pages/admin/categorias-admin/categorias-admin.component').then(m => m.CategoriasAdminComponent) },
+            { path: 'crear', loadComponent: () => import('./pages/admin/crear-categoria-admin/crear-categoria-admin.component').then(m => m.CrearCategoriaAdminComponent) },
+            { path: 'editar/:id', loadComponent: () => import('./pages/admin/editar-categoria-admin/editar-categoria-admin.component').then(m => m.EditarCategoriaAdminComponent) },
+          ]
+        },
         { path: 'usuarios', loadComponent: () => import('./pages/admin/usuarios-admin/usuarios-admin.component').then(m => m.UsuariosAdminComponent) },
         { path: 'admins', loadComponent: () => import('./pages/admin/administradores/administradores.component').then(m => m.AdministradoresComponent) },
     ],
