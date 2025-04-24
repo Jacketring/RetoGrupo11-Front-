@@ -1,1 +1,50 @@
-<p>mis-solicitudes works!</p>
+<div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">Mis Solicitudes</h2>
+    </div>
+  
+    @if (error) {
+      <div class="bg-red-100 text-red-700 p-3 rounded">{{ error }}</div>
+    }
+  
+    @if (solicitudes.length > 0) {
+      <table class="w-full text-sm text-left text-gray-700">
+        <thead class="bg-gray-100 text-xs uppercase">
+          <tr>
+            <th class="px-4 py-2">Vacante</th>
+            <th class="px-4 py-2">Empresa</th>
+            <th class="px-4 py-2">Currículum</th>
+            <th class="px-4 py-2">Fecha</th>
+            <th class="px-4 py-2">Estado</th>
+            <th class="px-4 py-2 text-right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (solicitud of solicitudes; track solicitud.fecha) {
+            <tr class="border-b hover:bg-gray-50">
+              <td class="px-4 py-2">{{ solicitud.nombreVacante }}</td>
+              <td class="px-4 py-2">{{ solicitud.nombreEmpresa }}</td>
+              <td class="px-4 py-2">{{ solicitud.curriculum }}</td>
+              <td class="px-4 py-2">{{ solicitud.fecha | date: 'shortDate' }}</td>
+              <td class="px-4 py-2">
+                <span [ngClass]="{
+                  'text-green-600': solicitud.estado === 1,
+                  'text-yellow-600': solicitud.estado === 0,
+                  'text-red-600': solicitud.estado === 2
+                }">
+                  {{ getEstadoTexto(solicitud.estado) }}
+                </span>
+              </td>
+              <td class="px-4 py-2 text-right space-x-2">
+                <button (click)="verDetalle(solicitud)" class="text-blue-600 hover:underline">Ver detalle</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <p class="text-gray-500">No tienes solicitudes registradas.</p>
+    }
+  </div>
+  
+
