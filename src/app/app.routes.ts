@@ -78,8 +78,32 @@ export const routes: Routes = [
             { path: 'editar/:id', loadComponent: () => import('./pages/admin/editar-categoria-admin/editar-categoria-admin.component').then(m => m.EditarCategoriaAdminComponent) },
           ]
         },
-        { path: 'usuarios', loadComponent: () => import('./pages/admin/usuarios-admin/usuarios-admin.component').then(m => m.UsuariosAdminComponent) },
-        { path: 'admins', loadComponent: () => import('./pages/admin/administradores/administradores.component').then(m => m.AdministradoresComponent) },
+        {
+          path: 'usuarios',
+          children: [
+            {
+              path: '',
+              loadComponent: () =>
+                import('./pages/admin/usuarios-admin/usuarios-admin.component').then(m => m.UsuariosAdminComponent),
+            },
+            // En el futuro podrías agregar edición individual si quieres
+          ],
+        },
+        {
+          path: 'admins',
+          children: [
+            {
+              path: '',
+              loadComponent: () =>
+                import('./pages/admin/administradores/administradores.component').then(m => m.AdministradoresComponent),
+            },
+            {
+              path: 'crear',
+              loadComponent: () =>
+                import('./pages/admin/administradores/crear-admin/crear-admin.component').then(m => m.CrearAdminComponent),
+            },
+          ],
+        }
     ],
   },
 ];

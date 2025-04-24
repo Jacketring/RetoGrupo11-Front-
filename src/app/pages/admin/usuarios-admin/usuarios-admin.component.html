@@ -1,1 +1,37 @@
-<p>usuarios-admin works!</p>
+<div class="p-6">
+    <h2 class="text-2xl font-bold mb-6">Usuarios registrados</h2>
+  
+    <table class="w-full text-sm text-left text-gray-700">
+      <thead class="bg-gray-100 text-xs uppercase">
+        <tr>
+          <th class="px-4 py-2">Nombre</th>
+          <th class="px-4 py-2">Email</th>
+          <th class="px-4 py-2">Rol</th>
+          <th class="px-4 py-2">Estado</th>
+          <th class="px-4 py-2 text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (u of usuarios; track u.email) {
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-4 py-2">{{ u.nombre }} {{ u.apellidos }}</td>
+            <td class="px-4 py-2">{{ u.email }}</td>
+            <td class="px-4 py-2">{{ u.rol ?? 'Desconocido' }}</td>
+            <td class="px-4 py-2">
+              <span [class.text-green-600]="u.enabled" [class.text-red-600]="!u.enabled">
+                {{ u.enabled ? 'Activo' : 'Deshabilitado' }}
+              </span>
+            </td>
+            <td class="text-right px-4 py-2">
+                @if (u.enabled) {
+                  <button (click)="deshabilitar(u.email)" class="text-red-600 hover:underline">Deshabilitar</button>
+                } @else {
+                  <button (click)="habilitar(u.email)" class="text-green-600 hover:underline">Habilitar</button>
+                }
+              </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  
