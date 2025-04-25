@@ -35,5 +35,9 @@ export class SolicitudService {
   getMisSolicitudes(): Observable<any> {
     return this.http.get(`${this.apiUrl}/missolicitudes`);
   }
+
+  getSolicitudesByEmpresa(): Observable<SolicitudResponseDto[]> {
+    return this.http.get<SolicitudResponseDto[]>(`${this.apiUrl}/empresa`);
+  }
   
 }

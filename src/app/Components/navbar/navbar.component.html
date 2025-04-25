@@ -2,7 +2,9 @@
   <a routerLink="/" class="text-xl font-bold text-gray-800">Job Platform</a>
 
   <ul class="flex gap-4 items-center text-sm text-gray-700">
-    <li><a routerLink="/vacantes" class="hover:text-blue-600">Vacantes</a></li>
+    @if (!auth.isAuthenticated() || auth.getRole() === 'CLIENTE') {
+      <li><a routerLink="/vacantes" class="hover:text-blue-600">Vacantes</a></li>
+    }
 
     @if (!auth.isAuthenticated()) {
       <li><a routerLink="/login" class="hover:text-blue-600">Iniciar sesión</a></li>
@@ -16,8 +18,10 @@
     }
     
     @if (auth.getRole() === 'EMPRESA') {
-      <li><a routerLink="/empresa/mis-vacantes" class="text-blue-600 hover:underline">🏠 Mi panel</a></li>
+      <li><a routerLink="/empresa" class="text-blue-600 hover:underline">🏠 Panel Empresa</a></li>
       <li><a routerLink="/empresa/vacante/nueva">Nueva vacante</a></li>
+      <li><a routerLink="/empresa/mis-vacantes">Mis vacantes</a></li>
+      <li><a routerLink="/empresa/solicitudes">Solicitudes</a></li>
       <li><a routerLink="/empresa/datos">Mi empresa</a></li>
       <li><button (click)="logout()" class="text-red-600 hover:underline">Cerrar sesión</button></li>
     }

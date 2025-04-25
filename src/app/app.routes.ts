@@ -12,6 +12,7 @@ import { AdminGuard } from './guards/admin.guard';
 // TODO: reemplazar por tus componentes reales:
 import { HomeComponent } from './pages/home/home.component'; // puede quedar como dashboard por rol
 import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
+import { HomeEmpresaComponent } from './pages/empresa/home-empresa/home-empresa.component';
 
 export const routes: Routes = [
   // 🔓 Rutas públicas
@@ -44,15 +45,15 @@ export const routes: Routes = [
   {
     path: 'empresa',
     canActivate: [EmpresaGuard],
-    component: HomeComponent, // o EmpresaLayout si tienes uno
+    component: HomeComponent,
     children: [
-      { path: '', redirectTo: 'mis-vacantes', pathMatch: 'full' },
+      { path: '', component: HomeEmpresaComponent }, // 👈 este es el home visual
       { path: 'mis-vacantes', loadComponent: () => import('./pages/empresa/mis-vacantes/mis-vacantes.component').then(m => m.MisVacantesComponent) },
       { path: 'vacante/nueva', loadComponent: () => import('./pages/empresa/crear-vacante/crear-vacante.component').then(m => m.CrearVacanteComponent) },
       { path: 'vacante/editar/:id', loadComponent: () => import('./pages/empresa/editar-vacante/editar-vacante.component').then(m => m.EditarVacanteComponent) },
-      { path: 'solicitudes/:idVacante', loadComponent: () => import('./pages/empresa/solicitudes-vacante/solicitudes-vacante.component').then(m => m.SolicitudesVacanteComponent) },
+      { path: 'solicitudes', loadComponent: () => import('./pages/empresa/solicitudes-vacante/solicitudes-vacante.component').then(m => m.SolicitudesVacanteComponent) },
       { path: 'datos', loadComponent: () => import('./pages/empresa/editar-empresa/editar-empresa.component').then(m => m.EditarEmpresaComponent) },
-    ],
+    ]
   },
 
   // 🔐 Admin

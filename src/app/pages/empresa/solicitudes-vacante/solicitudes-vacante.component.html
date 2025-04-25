@@ -1,1 +1,43 @@
-<p>solicitudes-vacante works!</p>
+<div class="p-6">
+    <h2 class="text-2xl font-bold mb-6">Solicitudes recibidas</h2>
+  
+    @if (getVacanteKeys().length > 0) {
+        @for (vacante of getVacanteKeys(); track vacante) {
+        <div class="mb-6 border rounded shadow p-4 bg-white">
+          <h3 class="text-xl font-semibold mb-2 text-blue-700">{{ vacante }}</h3>
+  
+          <table class="w-full text-sm text-left text-gray-700">
+            <thead class="bg-gray-100 text-xs uppercase">
+              <tr>
+                <th class="px-4 py-2">Usuario</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Fecha</th>
+                <th class="px-4 py-2">Comentarios</th>
+                <th class="px-4 py-2">Currículum</th>
+                <th class="px-4 py-2">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+                @for (s of solicitudesAgrupadas[vacante]; track s.idSolicitud) {
+                <tr class="border-b hover:bg-gray-50">
+                  <td class="px-4 py-2">{{ s.nombreUsuario }}</td>
+                  <td class="px-4 py-2">{{ s.emailUsuario }}</td>
+                  <td class="px-4 py-2">{{ s.fecha }}</td>
+                  <td class="px-4 py-2">{{ s.comentarios ?? '-' }}</td>
+                  <td class="px-4 py-2">
+                    <a [href]="s.curriculum" target="_blank" class="text-blue-600 hover:underline">Ver</a>
+                  </td>
+                  <td class="px-4 py-2">
+                    {{ s.estado === 1 ? 'Adjudicada' : 'Presentada' }}
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    } @else {
+      <p class="text-gray-500">Aún no hay solicitudes recibidas.</p>
+    }
+  </div>
+  
