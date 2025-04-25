@@ -9,4 +9,6 @@ export interface SolicitudResponseDto {
     vacanteNombre: string;
     emailUsuario: string;
     nombreUsuario: string;
+    nombreVacante: string;
+    nombreEmpresa: string;
   }

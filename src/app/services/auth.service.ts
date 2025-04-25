@@ -65,4 +65,19 @@ export class AuthService {
         this.router.navigate(['/vacantes']);
     }
   }
+
+  getEmailFromToken(): string | null {
+    const token = this.getToken();
+    if (!token) return null;
+  
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.sub || null;
+    } catch (error) {
+      console.error('Error al decodificar el token:', error);
+      return null;
+    }
+  }
+
+
 }
