@@ -1,1 +1,32 @@
-<p>editar-empresa works!</p>
+<div class="max-w-xl mx-auto p-6 bg-white shadow-md rounded">
+    <h2 class="text-2xl font-bold mb-4">Mis Datos de Empresa</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+  
+      <div>
+        <label class="block text-sm font-medium">Nombre Empresa</label>
+        <input type="text" formControlName="nombreEmpresa" class="input" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">CIF</label>
+        <input type="text" formControlName="cif" class="input" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Dirección Fiscal</label>
+        <input type="text" formControlName="direccionFiscal" class="input" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">País</label>
+        <input type="text" formControlName="pais" class="input" />
+      </div>
+  
+      <button type="submit" [disabled]="form.invalid || loading"
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        {{ loading ? 'Guardando...' : 'Guardar Cambios' }}
+      </button>
+    </form>
+  </div>
+  

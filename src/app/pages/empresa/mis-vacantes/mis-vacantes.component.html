@@ -1,1 +1,29 @@
-<p>mis-vacantes works!</p>
+<div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">Mis Vacantes</h2>
+      <button (click)="nuevaVacante()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        ➕ Nueva Vacante
+      </button>
+    </div>
+  
+    @if (vacantes.length > 0) {
+      <div class="grid md:grid-cols-2 gap-6">
+        @for (vacante of vacantes; track vacante.idVacante) {
+          <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-2">{{ vacante.nombre }}</h3>
+            <p class="text-gray-500 mb-2">{{ vacante.descripcion }}</p>
+            <p class="text-sm mb-2">💶 {{ vacante.salario }}€</p>
+            <p class="text-sm mb-2">📅 {{ vacante.fecha | date }}</p>
+            <p class="text-sm mb-4">📍 Estado: {{ vacante.estatus }}</p>
+  
+            <button (click)="editar(vacante.idVacante)" class="text-blue-600 hover:underline">
+              ✏️ Editar Vacante
+            </button>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="text-gray-500">📭 No tienes vacantes publicadas aún.</p>
+    }
+  </div>
+  

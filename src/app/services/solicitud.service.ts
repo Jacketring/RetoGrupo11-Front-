@@ -39,5 +39,9 @@ export class SolicitudService {
   getSolicitudesByEmpresa(): Observable<SolicitudResponseDto[]> {
     return this.http.get<SolicitudResponseDto[]>(`${this.apiUrl}/empresa`);
   }
+
+  adjudicarSolicitud(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/adjudicar/${id}`, null);
+  }
   
 }

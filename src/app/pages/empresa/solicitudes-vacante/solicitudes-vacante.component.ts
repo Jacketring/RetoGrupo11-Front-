@@ -32,4 +32,18 @@ export class SolicitudesVacanteComponent {
   getVacanteKeys(): string[] {
     return Object.keys(this.solicitudesAgrupadas || {});
   }
+
+  adjudicar(id: number) {
+    if (!confirm('¿Estás seguro de adjudicar esta solicitud? Esta acción no se puede deshacer.')) return;
+  
+    this.solicitudService.adjudicarSolicitud(id).subscribe({
+      next: (res) => {
+        alert(res.message || 'Solicitud adjudicada correctamente');
+        this.ngOnInit(); // volver a cargar las solicitudes
+      },
+      error: (err) => {
+        alert(err.error?.message || 'Error al adjudicar solicitud');
+      }
+    });
+  }
 }

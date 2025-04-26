@@ -1,1 +1,47 @@
-<p>editar-vacante works!</p>
+<div class="max-w-xl mx-auto p-6 bg-white shadow-md rounded">
+    <h2 class="text-2xl font-bold mb-4">Editar Vacante</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+  
+      <div>
+        <label class="block text-sm font-medium">Nombre</label>
+        <input type="text" formControlName="nombre" class="input" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Descripción</label>
+        <textarea formControlName="descripcion" class="input" rows="4"></textarea>
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Detalles</label>
+        <textarea formControlName="detalles" class="input" rows="4"></textarea>
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Salario</label>
+        <input type="number" formControlName="salario" class="input" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Imagen</label>
+        <input type="text" formControlName="imagen" class="input" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Categoría</label>
+        <select formControlName="nombreCategoria" class="input">
+          <option [ngValue]="null">-- Selecciona una categoría --</option>
+          @for (categoria of categorias; track categoria.idCategoria) {
+            <option [value]="categoria.nombre">{{ categoria.nombre }}</option>
+          }
+        </select>
+      </div>
+  
+      <button type="submit" [disabled]="form.invalid || loading"
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        {{ loading ? 'Guardando...' : 'Actualizar Vacante' }}
+      </button>
+    </form>
+  </div>
+  

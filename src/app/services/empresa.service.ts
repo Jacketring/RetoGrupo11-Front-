@@ -31,4 +31,12 @@ export class EmpresaService {
     return this.http.delete(`${this.apiUrl}/delete/${id}`);
   }
   
+  getMiEmpresa(): Observable<EmpresaResponseDto> {
+    return this.http.get<EmpresaResponseDto>(`${this.apiUrl}/miperfil`);
+  }
+
+  updateMiEmpresa(data: EmpresaRequestDto): Observable<any> {
+    return this.http.put(`${this.apiUrl}/propia/edit`, data);
+  }
+
 }
