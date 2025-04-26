@@ -1,39 +1,40 @@
-<div class="p-6">
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-800">Categorías</h2>
-      <button (click)="crear()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        ➕ Nueva Categoría
-      </button>
-    </div>
-  
-    @if (error) {
-      <div class="bg-red-100 text-red-700 p-3 rounded">{{ error }}</div>
-    }
-  
-    @if (categorias.length > 0) {
-      <table class="w-full text-sm text-left text-gray-700">
-        <thead class="bg-gray-100 text-xs uppercase">
-          <tr>
-            <th class="px-4 py-2">Nombre</th>
-            <th class="px-4 py-2">Descripción</th>
-            <th class="px-4 py-2 text-right">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (categoria of categorias; track categoria.idCategoria) {
-            <tr class="border-b hover:bg-gray-50">
-              <td class="px-4 py-2">{{ categoria.nombre }}</td>
-              <td class="px-4 py-2">{{ categoria.descripcion }}</td>
-              <td class="px-4 py-2 text-right space-x-2">
-                <button (click)="editar(categoria.idCategoria!)" class="text-blue-600 hover:underline">Editar</button>
-                <button (click)="eliminar(categoria.idCategoria!)" class="text-red-600 hover:underline">Eliminar</button>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    } @else {
-      <p class="text-gray-500">No hay categorías registradas.</p>
-    }
+<div class="p-8 bg-gray-50 rounded-lg shadow-lg">
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-3xl font-semibold text-gray-900">Categorías</h2>
+    <button (click)="crear()" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-200">
+      ➕ Nueva Categoría
+    </button>
   </div>
-  
+
+  @if (error) {
+    <div class="bg-red-200 text-red-800 p-4 mb-6 rounded-lg shadow-sm">
+      {{ error }}
+    </div>
+  }
+
+  @if (categorias.length > 0) {
+    <table class="categoria-table">
+      <thead >
+        <tr>
+          <th class="px-6 py-3">Nombre</th>
+          <th class="px-6 py-3">Descripción</th>
+          <th class="px-6 py-3 text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (categoria of categorias; track categoria.idCategoria) {
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-6 py-4">{{ categoria.nombre }}</td>
+            <td class="px-6 py-4">{{ categoria.descripcion }}</td>
+            <td class="px-6 py-4 text-right space-x-6">
+              <button (click)="editar(categoria.idCategoria!)" class="text-blue-600 hover:text-blue-800 font-medium transition-all duration-200">Editar</button>
+              <button (click)="eliminar(categoria.idCategoria!)" class="text-red-600 hover:text-red-800 font-medium transition-all duration-200">Eliminar</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p class="text-gray-600 text-center py-8">No hay categorías registradas todavía.</p>
+  }
+</div>

@@ -1,0 +1,79 @@
+/* Contenedor principal */
+.admin-panel {
+  padding: 2rem;
+}
+
+/* Título */
+.admin-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+/* Subtítulo */
+.admin-subtitle {
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+/* Grid de tarjetas */
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .admin-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tarjetas */
+.admin-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: block;
+}
+
+.admin-card:hover {
+  background: #f9fafb;
+  transform: translateY(-4px);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos de las tarjetas */
+.admin-card h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Descripción de las tarjetas */
+.admin-card p {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Colores específicos para cada tarjeta */
+.admin-card.blue h2 {
+  color: #3b82f6; /* Azul */
+}
+
+.admin-card.green h2 {
+  color: #10b981; /* Verde */
+}
+
+.admin-card.purple h2 {
+  color: #8b5cf6; /* Púrpura */
+}
+
+.admin-card.red h2 {
+  color: #ef4444; /* Rojo */
+}

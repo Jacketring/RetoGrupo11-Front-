@@ -1,0 +1,87 @@
+/* Contenedor general */
+.usuarios-container {
+  padding: 1.5rem;
+}
+
+/* Encabezado */
+.usuarios-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Título */
+.usuarios-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* Tabla */
+.usuarios-table-wrapper {
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.usuarios-table {
+  width: 100%;
+  text-align: left;
+  font-size: 0.95rem;
+  border-collapse: collapse;
+}
+
+/* Cabecera */
+.usuarios-table thead {
+  background-color: #f1f5f9;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.usuarios-table th, .usuarios-table td {
+  padding: 1rem;
+}
+
+/* Filas */
+.usuarios-table tbody tr {
+  border-top: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.usuarios-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Links de acción */
+.action-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.action-link.edit {
+  color: #2563eb;
+}
+
+.action-link.edit:hover {
+  text-decoration: underline;
+}
+
+.action-link.delete {
+  color: #dc2626;
+}
+
+.action-link.delete:hover {
+  text-decoration: underline;
+}
+
+/* Texto vacío */
+.usuarios-empty {
+  color: #6b7280;
+  text-align: center;
+  margin-top: 2rem;
+}

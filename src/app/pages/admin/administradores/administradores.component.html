@@ -1,32 +1,33 @@
-<div class="p-6">
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold">Administradores</h2>
-      <button (click)="crearAdmin()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        ➕ Nuevo Administrador
-      </button>
-    </div>
-  
-    @if (administradores.length > 0) {
-      <table class="w-full text-sm text-left text-gray-700">
-        <thead class="bg-gray-100 text-xs uppercase">
+<div class="admin-container">
+  <div class="admin-header">
+    <h2 class="admin-title">Administradores</h2>
+    <button (click)="crearAdmin()" class="admin-button">
+      ➕ Nuevo Administrador
+    </button>
+  </div>
+
+  @if (administradores.length > 0) {
+    <div class="admin-table-wrapper">
+      <table class="admin-table">
+        <thead>
           <tr>
-            <th class="px-4 py-2">Nombre</th>
-            <th class="px-4 py-2">Email</th>
-            <th class="px-4 py-2">Fecha de Registro</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Fecha de Registro</th>
           </tr>
         </thead>
         <tbody>
           @for (admin of administradores; track admin.email) {
-            <tr class="border-b hover:bg-gray-50">
-              <td class="px-4 py-2">{{ admin.nombre }} {{ admin.apellidos }}</td>
-              <td class="px-4 py-2">{{ admin.email }}</td>
-              <td class="px-4 py-2">{{ admin.fechaRegistro }}</td>
+            <tr>
+              <td>{{ admin.nombre }} {{ admin.apellidos }}</td>
+              <td>{{ admin.email }}</td>
+              <td>{{ admin.fechaRegistro }}</td>
             </tr>
           }
         </tbody>
       </table>
-    } @else {
-      <p class="text-gray-500">No hay administradores registrados.</p>
-    }
-  </div>
-  
+    </div>
+  } @else {
+    <p class="admin-empty">No hay administradores registrados.</p>
+  }
+</div>

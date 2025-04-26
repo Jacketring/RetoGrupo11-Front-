@@ -8,7 +8,7 @@ import { JumbotronComponent } from "./Components/jumbotron/jumbotron.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

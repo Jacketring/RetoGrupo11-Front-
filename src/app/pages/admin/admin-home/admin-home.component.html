@@ -1,26 +1,26 @@
-<div class="p-8">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">Panel de Administración</h1>
-  <p class="text-gray-600 mb-8">Selecciona una sección para gestionar:</p>
+<div class="admin-panel">
+  <h1 class="admin-title">Panel de Administración</h1>
+  <p class="admin-subtitle">Selecciona una sección para gestionar:</p>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <a routerLink="/admin/empresas" class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50">
-      <h2 class="text-xl font-semibold text-blue-700">Empresas</h2>
-      <p class="text-gray-500 mt-2">Ver y gestionar empresas registradas.</p>
+  <div class="admin-grid">
+    <a routerLink="/admin/empresas" class="admin-card blue">
+      <h2>Empresas</h2>
+      <p>Ver y gestionar empresas registradas.</p>
     </a>
 
-    <a routerLink="/admin/categorias" class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50">
-      <h2 class="text-xl font-semibold text-green-700">Categorías</h2>
-      <p class="text-gray-500 mt-2">Crear y modificar categorías disponibles.</p>
+    <a routerLink="/admin/categorias" class="admin-card green">
+      <h2>Categorías</h2>
+      <p>Crear y modificar categorías disponibles.</p>
     </a>
 
-    <a routerLink="/admin/usuarios" class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50">
-      <h2 class="text-xl font-semibold text-purple-700">Usuarios</h2>
-      <p class="text-gray-500 mt-2">Ver usuarios registrados y desactivar cuentas.</p>
+    <a routerLink="/admin/usuarios" class="admin-card purple">
+      <h2>Usuarios</h2>
+      <p>Ver usuarios registrados y desactivar cuentas.</p>
     </a>
 
-    <a routerLink="/admin/admins" class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50">
-      <h2 class="text-xl font-semibold text-red-700">Administradores</h2>
-      <p class="text-gray-500 mt-2">Crear y gestionar otros administradores.</p>
+    <a routerLink="/admin/admins" class="admin-card red">
+      <h2>Administradores</h2>
+      <p>Crear y gestionar otros administradores.</p>
     </a>
   </div>
 </div>

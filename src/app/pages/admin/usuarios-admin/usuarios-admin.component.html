@@ -1,37 +1,44 @@
-<div class="p-6">
-    <h2 class="text-2xl font-bold mb-6">Usuarios registrados</h2>
-  
-    <table class="w-full text-sm text-left text-gray-700">
-      <thead class="bg-gray-100 text-xs uppercase">
-        <tr>
-          <th class="px-4 py-2">Nombre</th>
-          <th class="px-4 py-2">Email</th>
-          <th class="px-4 py-2">Rol</th>
-          <th class="px-4 py-2">Estado</th>
-          <th class="px-4 py-2 text-right">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (u of usuarios; track u.email) {
-          <tr class="border-b hover:bg-gray-50">
-            <td class="px-4 py-2">{{ u.nombre }} {{ u.apellidos }}</td>
-            <td class="px-4 py-2">{{ u.email }}</td>
-            <td class="px-4 py-2">{{ u.rol ?? 'Desconocido' }}</td>
-            <td class="px-4 py-2">
-              <span [class.text-green-600]="u.enabled" [class.text-red-600]="!u.enabled">
-                {{ u.enabled ? 'Activo' : 'Deshabilitado' }}
-              </span>
-            </td>
-            <td class="text-right px-4 py-2">
+<div class="usuarios-container">
+  <div class="usuarios-header">
+    <h2 class="usuarios-title">Usuarios registrados</h2>
+  </div>
+
+  @if (usuarios.length > 0) {
+    <div class="usuarios-table-wrapper">
+      <table class="usuarios-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th class="text-right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (u of usuarios; track u.email) {
+            <tr>
+              <td>{{ u.nombre }} {{ u.apellidos }}</td>
+              <td>{{ u.email }}</td>
+              <td>{{ u.rol ?? 'Desconocido' }}</td>
+              <td>
+                <span [class.text-green-600]="u.enabled" [class.text-red-600]="!u.enabled">
+                  {{ u.enabled ? 'Activo' : 'Deshabilitado' }}
+                </span>
+              </td>
+              <td class="text-right">
                 @if (u.enabled) {
-                  <button (click)="deshabilitar(u.email)" class="text-red-600 hover:underline">Deshabilitar</button>
+                  <button (click)="deshabilitar(u.email)" class="action-link delete">Deshabilitar</button>
                 } @else {
-                  <button (click)="habilitar(u.email)" class="text-green-600 hover:underline">Habilitar</button>
+                  <button (click)="habilitar(u.email)" class="action-link edit">Habilitar</button>
                 }
               </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
-  
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <p class="usuarios-empty">No hay usuarios registrados todavía.</p>
+  }
+</div>

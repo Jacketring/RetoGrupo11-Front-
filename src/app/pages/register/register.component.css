@@ -1,0 +1,94 @@
+/* Fondo general */
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3f4f6; /* gris clarito */
+  padding: 1rem;
+}
+
+/* Tarjeta de registro */
+.register-card {
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Título */
+.register-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+}
+
+/* Grupos de inputs */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* Labels */
+.form-group label {
+  display: block;
+  font-size: 0.95rem;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+/* Inputs */
+.form-group input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #2d3748;
+  background: #f9fafb;
+  transition: border-color 0.3s ease;
+}
+
+/* Foco en inputs */
+.form-group input:focus {
+  border-color: #3b82f6; /* Azul bonito */
+  outline: none;
+  background: #ffffff;
+}
+
+/* Mensaje de error */
+.error-message {
+  background: #ffe4e6;
+  color: #b91c1c;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Botón de registro */
+.submit-btn {
+  width: 100%;
+  background: #3b82f6;
+  color: #ffffff;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #2563eb;
+}
+
+/* Botón disabled */
+.submit-btn:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
