@@ -1,15 +1,15 @@
 <div class="mt-4 flex gap-2">
-    <button (click)="verDetalle()" class="bg-blue-600 text-white px-3 py-1 rounded">
-      Ver Detalle
-    </button>
-  
-    @if (auth.getRole() === 'EMPRESA') {
-      <button (click)="editar()" class="bg-yellow-500 text-white px-3 py-1 rounded">Editar</button>
-      <button (click)="cancelar()" class="bg-red-600 text-white px-3 py-1 rounded">Cancelar</button>
-    }
-  
-    @if (auth.getRole() === 'CLIENTE') {
-      <button (click)="postular()" class="bg-green-600 text-white px-3 py-1 rounded">Postular</button>
-    }
-  </div>
-  
+  <button (click)="verDetalle()" class="bg-blue-600 text-white px-3 py-1 rounded">
+    Ver Detalle
+  </button>
+
+  @if (auth.getRole() === 'EMPRESA') {
+    <button (click)="editar()" class="bg-yellow-500 text-white px-3 py-1 rounded">Editar</button>
+    <button (click)="cancelar()" class="bg-red-600 text-white px-3 py-1 rounded">Cancelar</button>
+  }
+
+  @if (auth.getRole() === 'CLIENTE') {
+    <button (click)="postular()" class="bg-green-600 text-white px-3 py-1 rounded">Postular</button>
+  }
+</div>
+

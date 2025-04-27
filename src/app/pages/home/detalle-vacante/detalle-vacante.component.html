@@ -1,0 +1,18 @@
+<div class="detalle-vacante-container">
+    <h2 class="detalle-vacante-title">Detalle de Vacante</h2>
+  
+    <div class="detalle-vacante-info">
+      <img [src]="'/assets/img/' + vacante.imagen" alt="{{ vacante.nombre }}" class="vacante-image" />
+      <h3>{{ vacante.nombre }}</h3>
+      <p>{{ vacante.descripcion }}</p>
+      <p><strong>Salario:</strong> {{ vacante.salario }}</p>
+      <p><strong>Categoria:</strong> {{ vacante.categoria }}</p>
+      <p><strong>Empresa:</strong> {{ vacante.empresa }}</p>
+      <p><strong>Fecha:</strong> {{ vacante.fecha }}</p>
+      <p><strong>Detalles:</strong> {{ vacante.detalles }}</p>
+    </div>
+    <button (click)="goBack()" class="detalle-solicitud-button">
+      Volver
+    </button>
+  </div>
+  

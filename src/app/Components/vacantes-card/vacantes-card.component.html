@@ -10,5 +10,5 @@
   <p class="text-sm text-gray-400">
     Salario: {{ vacante.salario | currency: 'EUR' }}
   </p>
-  <app-vacante-botonera />
+  <app-vacante-botonera [vacante]="vacante"/>
 </div>

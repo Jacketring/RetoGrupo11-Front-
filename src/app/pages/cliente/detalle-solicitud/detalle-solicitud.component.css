@@ -1,0 +1,69 @@
+/* Contenedor principal */
+.detalle-solicitud-container {
+    max-width: 640px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Título */
+  .detalle-solicitud-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+  }
+  
+  /* Información de la solicitud */
+  .detalle-solicitud-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  /* Campos de la solicitud en línea */
+  .detalle-solicitud-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    color: #4b5563;
+  }
+  
+  /* Resaltado de las etiquetas */
+  .detalle-solicitud-field strong {
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  /* Estilo para enlaces */
+  .detalle-solicitud-info a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+  
+  .detalle-solicitud-info a:hover {
+    color: #1d4ed8;
+  }
+  
+  /* Botón Volver */
+  .detalle-solicitud-button {
+    margin-top: 1.5rem;
+    background-color: #e5e7eb;
+    color: #4b5563;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    width: auto;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+  }
+  
+  .detalle-solicitud-button:hover {
+    background-color: #d1d5db; 
+  }
+  

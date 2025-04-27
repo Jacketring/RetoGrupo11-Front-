@@ -34,11 +34,18 @@ export class MisSolicitudesComponent {
     });
   }
 
-  verDetalle(solicitud: SolicitudResponseDto) {
+  /*verDetalle(solicitud: SolicitudResponseDto) {
     // Si tienes ID único, pásalo en la URL. Si no, puedes mandar datos al detalle de otra manera.
     // Aquí asumo que vas a pasar la fecha como ID temporal.
     this.router.navigate(['/cliente/solicitud', encodeURIComponent(solicitud.fecha.toString())]);
-  }
+  }*/
+    verDetalle(solicitud: SolicitudResponseDto) {
+      if (solicitud && solicitud.idSolicitud) {
+        this.router.navigate(['/cliente/solicitud', solicitud.idSolicitud]);
+      } else {
+        console.error('ID de solicitud no válido:', solicitud);
+      }
+    }
 
   getEstadoTexto(estado: number): string {
     switch (estado) {

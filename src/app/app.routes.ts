@@ -24,6 +24,11 @@ export const routes: Routes = [
       { path: 'vacantes', component: VacantesViewComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      {
+        path: 'home/detalle-vacante/:id',
+        loadComponent: () => import('./pages/home/detalle-vacante/detalle-vacante.component')
+          .then(m => m.DetalleVacanteComponent)
+      },
     ],
   },
 

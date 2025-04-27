@@ -1,0 +1,72 @@
+/* Contenedor principal */
+.detalle-vacante-container {
+    max-width: 640px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Título */
+  .detalle-vacante-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+  }
+  
+  /* Información de la vacante */
+  .detalle-vacante-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  /* Imagen de vacante */
+  .vacante-image {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Detalles */
+  .detalle-vacante-info p {
+    font-size: 1rem;
+    color: #4b5563;
+    margin-bottom: 0.75rem;
+  }
+  
+  .detalle-vacante-info strong {
+    color: #1f2937;
+  }
+  
+  /* Enlaces (si los tuvieses) */
+  .detalle-vacante-info a {
+    text-decoration: none;
+    color: #2563eb;
+  }
+  
+  .detalle-vacante-info a:hover {
+    color: #1d4ed8;
+  }
+  
+    /* Botón Volver */
+    .detalle-solicitud-button {
+      margin-top: 1.5rem;
+      background-color: #e5e7eb;
+      color: #4b5563;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      width: auto;
+      transition: background-color 0.3s;
+      font-size: 1rem;
+    }
+    
+    .detalle-solicitud-button:hover {
+      background-color: #d1d5db;
+    }

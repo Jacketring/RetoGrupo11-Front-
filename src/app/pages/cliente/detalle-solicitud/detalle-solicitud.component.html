@@ -1,1 +1,55 @@
-<p>detalle-solicitud works!</p>
+<div class="detalle-solicitud-container">
+    <h2 class="detalle-solicitud-title">Detalle de Solicitud</h2>
+  
+    <div class="detalle-solicitud-info">
+      <div class="detalle-solicitud-field">
+        <strong>ID de Solicitud:</strong>
+        <span>{{ solicitud.idSolicitud }}</span>
+      </div>
+  
+      <div class="detalle-solicitud-field">
+        <strong>Fecha:</strong>
+        <span>{{ solicitud.fecha | date }}</span>
+      </div>
+  
+      <div class="detalle-solicitud-field">
+        <strong>Comentarios:</strong>
+        <span>{{ solicitud.comentarios }}</span>
+      </div>
+  
+      <div class="detalle-solicitud-field">
+        <strong>Curriculum:</strong>
+        <a [href]="solicitud.curriculum" target="_blank">Ver Curriculum</a>
+      </div>
+  
+      <div class="detalle-solicitud-field">
+        <strong>Vacante:</strong>
+        <span>{{ solicitud.vacanteNombre }}</span>
+      </div>
+  
+      <div class="detalle-solicitud-field">
+        <strong>Empresa:</strong>
+        <span>{{ solicitud.nombreEmpresa }}</span>
+      </div>
+  
+      <div class="detalle-solicitud-field">
+        <strong>Estado:</strong>
+        <span>{{ solicitud.estado === 1 ? 'Aprobada' : 'Pendiente' }}</span>
+      </div>
+  
+      <div class="detalle-solicitud-field">
+        <strong>Nombre Usuario:</strong>
+        <span>{{ solicitud.nombreUsuario }}</span>
+      </div>
+  
+      <div class="detalle-solicitud-field">
+        <strong>Email Usuario:</strong>
+        <span>{{ solicitud.emailUsuario }}</span>
+      </div>
+    </div>
+  
+    <button (click)="goBack()" class="detalle-solicitud-button">
+      Volver
+    </button>
+  </div>
+  

@@ -5,7 +5,6 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-vacante-botonera',
-  standalone: true,
   imports: [RouterModule],
   templateUrl: './vacantes-botonera.component.html',
   styleUrls: ['./vacantes-botonera.component.css']
@@ -17,7 +16,8 @@ export class VacanteBotoneraComponent {
   router = inject(Router);
 
   verDetalle() {
-    this.router.navigate(['/vacantes', this.vacante.idVacante]);
+    console.log('verDetalle() llamado');
+    this.router.navigate(['/home/detalle-vacante', this.vacante.idVacante]);
   }
 
   editar() {
