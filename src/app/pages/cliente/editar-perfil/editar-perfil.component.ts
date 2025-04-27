@@ -21,6 +21,7 @@ export class EditarPerfilComponent {
   private fb = inject(FormBuilder);
   private usuarioService = inject(UsuarioService);
   private router = inject(Router);
+error: any;
 
   ngOnInit(): void {
     this.form = this.fb.group({

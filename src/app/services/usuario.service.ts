@@ -43,6 +43,6 @@ export class UsuarioService {
 
   // Actualizar datos del usuario autenticado
   updateMiUsuario(data: UsuarioRequestDto): Observable<any> {
-    return this.http.put(`${this.apiUrl}/usuario/edit/miperfil`, data);
+    return this.http.put(`${this.apiUrl}/usuario/miperfil/edit`, data);
   }
 }

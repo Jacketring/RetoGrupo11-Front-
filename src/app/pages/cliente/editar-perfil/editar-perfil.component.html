@@ -1,20 +1,24 @@
-<div class="max-w-xl mx-auto p-6 bg-white shadow-md rounded">
-  <h2 class="text-2xl font-bold mb-4">Mi Perfil</h2>
+<div class="perfil-editar-container">
+  <h2 class="perfil-editar-title">Editar Perfil</h2>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+  @if (error) {
+    <div class="error-message">
+      {{ error }}
+    </div>
+  }
 
-    <div>
-      <label class="block text-sm font-medium">Nombre</label>
-      <input type="text" formControlName="nombre" class="input" />
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="perfil-editar-form">
+    <div class="form-group">
+      <label>Nombre</label>
+      <input formControlName="nombre" type="text" class="input-field" />
     </div>
 
-    <div>
-      <label class="block text-sm font-medium">Apellidos</label>
-      <input type="text" formControlName="apellidos" class="input" />
+    <div class="form-group">
+      <label>Apellidos</label>
+      <input formControlName="apellidos" type="text" class="input-field" />
     </div>
 
-    <button type="submit" [disabled]="form.invalid || loading"
-      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    <button type="submit" class="submit-button" [disabled]="form.invalid || loading">
       {{ loading ? 'Guardando...' : 'Guardar Cambios' }}
     </button>
   </form>
