@@ -36,13 +36,13 @@ export class UsuarioService {
     return this.http.post(`${this.apiUrl}/admin/add`, data);
   }
 
-  getUsuarioByEmail(email: string): Observable<UsuarioResponseDto> {
-    const token = this.authService.getToken();
-    const headers = { Authorization: `Bearer ${token}` };
-    return this.http.get<UsuarioResponseDto>(`${this.apiUrl}/usuario/detail/${email}`, { headers });
+  // Obtener datos del usuario autenticado
+  getMiUsuario(): Observable<UsuarioResponseDto> {
+    return this.http.get<UsuarioResponseDto>(`${this.apiUrl}/usuario/miperfil`);
   }
-  
-  updateUsuario(email: string, usuario: UsuarioRequestDto): Observable<any> {
-    return this.http.put(`${this.apiUrl}/usuario/edit/${email}`, usuario);
+
+  // Actualizar datos del usuario autenticado
+  updateMiUsuario(data: UsuarioRequestDto): Observable<any> {
+    return this.http.put(`${this.apiUrl}/usuario/edit/miperfil`, data);
   }
 }
