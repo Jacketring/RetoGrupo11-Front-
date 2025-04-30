@@ -16,6 +16,10 @@ export class VacanteService {
     return this.http.get<VacanteResponseDto[]>(`${this.apiUrl}/todas`);
   }
 
+  getCreadas(): Observable<VacanteResponseDto[]> {
+    return this.http.get<VacanteResponseDto[]>(`${this.apiUrl}/creadas`);
+  }
+
   getDetalle(id: number): Observable<VacanteResponseDto> {
     return this.http.get<VacanteResponseDto>(`${this.apiUrl}/detalle/${id}`);
   }
@@ -30,5 +34,9 @@ export class VacanteService {
 
   editarVacante(idVacante: number, vacante: VacanteRequestDto): Observable<any> {
     return this.http.put(`${this.apiUrl}/modificar/${idVacante}`, vacante);
+  }
+
+  cancelarVacante(idVacante: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/cancelar/${idVacante}`,{});
   }
 }

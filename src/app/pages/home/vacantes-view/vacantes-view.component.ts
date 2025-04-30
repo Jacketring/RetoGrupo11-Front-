@@ -19,7 +19,7 @@ export class VacantesViewComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('VacantesViewComponent cargado'); // 👈 prueba 1
-    this.vacanteService.getTodas().subscribe({
+    this.vacanteService.getCreadas().subscribe({
       next: (data) => {
         console.log('Vacantes recibidas:', data); // 👈 prueba 2
         this.vacantes = data;

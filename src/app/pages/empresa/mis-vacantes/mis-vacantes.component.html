@@ -16,9 +16,14 @@
             <p class="text-sm mb-2">📅 {{ vacante.fecha | date }}</p>
             <p class="text-sm mb-4">📍 Estado: {{ vacante.estatus }}</p>
   
-            <button (click)="editar(vacante.idVacante)" class="text-blue-600 hover:underline">
-              ✏️ Editar Vacante
-            </button>
+            <div class="flex space-x-4">
+              <button (click)="editar(vacante.idVacante)" class="text-blue-600 hover:underline">
+                ✏️ Editar Vacante
+              </button>
+              <button (click)="cancelar(vacante.idVacante)" class="text-red-600 hover:underline">
+                🗑️ Cancelar Vacante
+              </button>
+            </div>
           </div>
         }
       </div>

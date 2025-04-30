@@ -33,6 +33,23 @@ export class MisVacantesComponent {
     this.router.navigate(['/empresa/vacante/editar', id]);
   }
 
+  cancelar(id: number) {
+    const confirmacion = window.confirm('¿Estás seguro de que deseas cancelar esta vacante?');
+  
+    if (confirmacion) {
+      this.vacanteService.cancelarVacante(id).subscribe({
+        next: () => {
+          alert('✅ Vacante cancelada correctamente');
+          this.router.navigate(['/empresa/mis-vacantes']);
+        },
+        error: (err) => {
+          console.error('❌ Error al cancelar la vacante', err);
+          alert('Hubo un error al cancelar la vacante');
+        }
+      });
+    }
+  }
+
   nuevaVacante() {
     this.router.navigate(['/empresa/vacante/nueva']);
   }
