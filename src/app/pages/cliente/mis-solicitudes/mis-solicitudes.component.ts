@@ -55,5 +55,22 @@ export class MisSolicitudesComponent {
       default: return 'Desconocido';
     }
   }
+
+  eliminarSolicitud(id: number) {
+    const confirmacion = window.confirm('¿Estás seguro de que deseas eliminar esta solicitud?');
+
+    if (confirmacion) {
+      this.solicitudService.deleteSolicitud(id).subscribe({
+        next: () => {
+          alert('✅ Solicitud eliminada correctamente');
+          this.router.navigate(['']);
+        },
+        error: (err) => {
+          console.error('❌ Error al eliminar la solicitud', err);
+          alert('Hubo un error al eliminar la solicitud');
+        }
+      });
+    }
+  }
 }
 

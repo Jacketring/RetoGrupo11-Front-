@@ -1,1 +1,32 @@
-<p>postular-vacante works!</p>
+<div class="max-w-xl mx-auto p-6 bg-white shadow-md rounded">
+    <h2 class="text-2xl font-bold mb-4">Postular a Vacante</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium">Vacante</label>
+        <input type="text" formControlName="nombreVacante" class="input bg-gray-100" readonly />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Archivo</label>
+        <input type="text" formControlName="archivo" class="input" placeholder="Nombre o ruta del archivo" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Currículum</label>
+        <input type="text" formControlName="curriculum" class="input" />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium">Comentarios</label>
+        <textarea formControlName="comentarios" class="input" rows="4" placeholder="Escribe tus comentarios..."></textarea>
+      </div>
+  
+      <button type="submit" [disabled]="form.invalid || loading"
+        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        {{ loading ? 'Enviando...' : 'Enviar Solicitud' }}
+      </button>
+    </form>
+  </div>
+  
+

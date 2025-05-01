@@ -29,6 +29,6 @@ export class VacanteBotoneraComponent {
   }
 
   postular() {
-    this.router.navigate(['/cliente/solicitud', this.vacante.idVacante]);
+    this.router.navigate(['/cliente/aplicar', this.vacante.idVacante]);
   }
 }

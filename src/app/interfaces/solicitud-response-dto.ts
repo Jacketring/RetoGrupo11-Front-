@@ -1,7 +1,7 @@
 export interface SolicitudResponseDto {
     idSolicitud: number;
     fecha: string;
-    archivo: string;
+    archivos: string;
     comentarios: string;
     curriculum: string;
     estado: number; // 0 o 1

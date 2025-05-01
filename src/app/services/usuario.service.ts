@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { UsuarioResponseDto } from '../interfaces/usuario-response-dto';
 import { UsuarioRequestDto } from '../interfaces/usuario-request-dto';
 import { AuthService } from './auth.service';
+import { SolicitudRequestDto } from '../interfaces/solicitud-request-dto';
 
 
 @Injectable({
@@ -44,5 +45,10 @@ export class UsuarioService {
   // Actualizar datos del usuario autenticado
   updateMiUsuario(data: UsuarioRequestDto): Observable<any> {
     return this.http.put(`${this.apiUrl}/usuario/miperfil/edit`, data);
+  }
+
+  // Postular a vacante
+  postularVacante(idVacante: number, solicitud: SolicitudRequestDto): Observable<any> {
+    return this.http.post(`${this.apiUrl}/usuario/solicitud/vacante/${idVacante}`, solicitud);
   }
 }
