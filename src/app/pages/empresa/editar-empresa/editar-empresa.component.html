@@ -1,32 +1,34 @@
-<div class="max-w-xl mx-auto p-6 bg-white shadow-md rounded">
-    <h2 class="text-2xl font-bold mb-4">Mis Datos de Empresa</h2>
-  
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
-  
-      <div>
-        <label class="block text-sm font-medium">Nombre Empresa</label>
-        <input type="text" formControlName="nombreEmpresa" class="input" />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium">CIF</label>
-        <input type="text" formControlName="cif" class="input" />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium">Dirección Fiscal</label>
-        <input type="text" formControlName="direccionFiscal" class="input" />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium">País</label>
-        <input type="text" formControlName="pais" class="input" />
-      </div>
-  
-      <button type="submit" [disabled]="form.invalid || loading"
-        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        {{ loading ? 'Guardando...' : 'Guardar Cambios' }}
-      </button>
-    </form>
-  </div>
-  
+<div class="admin-panel max-w-2xl mx-auto bg-white shadow-lg rounded-2xl p-8">
+  <h2 class="admin-title text-3xl font-bold text-gray-800 mb-2">Mis Datos de Empresa</h2>
+  <p class="admin-subtitle text-gray-500 mb-6">Actualiza la información de tu empresa a continuación:</p>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-5">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Nombre Empresa</label>
+      <input type="text" formControlName="nombreEmpresa" class="input w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">CIF</label>
+      <input type="text" formControlName="cif" class="input w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Dirección Fiscal</label>
+      <input type="text" formControlName="direccionFiscal" class="input w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">País</label>
+      <input type="text" formControlName="pais" class="input w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="form.invalid || loading"
+      class="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      {{ loading ? 'Guardando...' : 'Guardar Cambios' }}
+    </button>
+  </form>
+</div>

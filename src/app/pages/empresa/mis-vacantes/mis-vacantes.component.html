@@ -1,34 +1,61 @@
-<div class="p-6">
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-800">Mis Vacantes</h2>
-      <button (click)="nuevaVacante()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-        ➕ Nueva Vacante
-      </button>
-    </div>
-  
-    @if (vacantes.length > 0) {
-      <div class="grid md:grid-cols-2 gap-6">
-        @for (vacante of vacantes; track vacante.idVacante) {
-          <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-            <h3 class="text-xl font-semibold mb-2">{{ vacante.nombre }}</h3>
-            <p class="text-gray-500 mb-2">{{ vacante.descripcion }}</p>
-            <p class="text-sm mb-2">💶 {{ vacante.salario }}€</p>
-            <p class="text-sm mb-2">📅 {{ vacante.fecha | date }}</p>
-            <p class="text-sm mb-4">📍 Estado: {{ vacante.estatus }}</p>
-  
-            <div class="flex space-x-4">
-              <button (click)="editar(vacante.idVacante)" class="text-blue-600 hover:underline">
-                ✏️ Editar Vacante
-              </button>
-              <button (click)="cancelar(vacante.idVacante)" class="text-red-600 hover:underline">
-                🗑️ Cancelar Vacante
-              </button>
-            </div>
-          </div>
-        }
-      </div>
-    } @else {
-      <p class="text-gray-500">📭 No tienes vacantes publicadas aún.</p>
-    }
+<div class="admin-panel max-w-6xl mx-auto p-6 bg-white rounded-2xl shadow-lg">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="admin-title text-3xl font-bold text-gray-800">Mis Vacantes</h2>
+    <button 
+      (click)="nuevaVacante()" 
+      class="bg-green-600 text-white px-5 py-2.5 rounded-lg hover:bg-green-700 transition-colors"
+    >
+      ➕ Nueva Vacante
+    </button>
   </div>
-  
+
+  @if (vacantes.length > 0) {
+    <div class="admin-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (vacante of vacantes; track vacante.idVacante) {
+        <div class="admin-card p-6 bg-white rounded-xl shadow hover:shadow-xl transition duration-300 border border-gray-100">
+          <!-- Imagen de la vacante -->
+          @if (vacante.imagen && esUrlImagen(vacante.imagen) && !imagenesError[vacante.idVacante]) {
+            <div class="mb-4 h-40 overflow-hidden rounded-lg bg-gray-100">
+              <img 
+                [src]="obtenerUrlImagen(vacante.imagen)" 
+                alt="{{ vacante.nombre }}" 
+                class="w-full h-full object-cover"
+                (error)="manejarErrorImagen(vacante.idVacante)" 
+              />
+            </div>
+          } @else {
+            <div class="mb-4 h-40 rounded-lg bg-gray-100 flex items-center justify-center">
+              <div class="text-gray-400 text-center p-4">
+                <span class="block text-4xl mb-2">🖼️</span>
+                <span class="text-sm">Imagen no disponible</span>
+              </div>
+            </div>
+          }
+
+          <h3 class="text-xl font-semibold text-gray-800 mb-1">{{ vacante.nombre }}</h3>
+          <p class="text-gray-500 mb-2">{{ vacante.descripcion }}</p>
+          <p class="text-sm text-gray-600 mb-1">💶 {{ vacante.salario }}€</p>
+          <p class="text-sm text-gray-600 mb-1">📅 {{ vacante.fecha | date }}</p>
+          <p class="text-sm text-gray-600 mb-4">📍 Estado: {{ vacante.estatus }}</p>
+
+          <div class="flex space-x-4 text-sm">
+            <button 
+              (click)="editar(vacante.idVacante)" 
+              class="text-blue-600 hover:underline font-medium"
+            >
+              ✏️ Editar
+            </button>
+            <button 
+              (click)="cancelar(vacante.idVacante)" 
+              class="text-red-600 hover:underline font-medium"
+            >
+              🗑️ Cancelar
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="text-gray-500 text-center">📭 No tienes vacantes publicadas aún.</p>
+  }
+</div>

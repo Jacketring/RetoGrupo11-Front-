@@ -1,0 +1,186 @@
+<div class="p-6 bg-gray-50 min-h-screen">
+  <div class="max-w-4xl mx-auto">
+    <!-- Botón de volver -->
+    <button (click)="volver()" class="mb-4 flex items-center text-blue-600 hover:text-blue-800">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Volver a la lista de solicitudes
+    </button>
+
+    <!-- Estado de carga -->
+    @if (cargando()) {
+      <div class="flex justify-center items-center p-8">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    }
+
+    <!-- Mensaje de error -->
+    @if (error()) {
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+        <strong class="font-bold">Error:</strong>
+        <span class="block sm:inline"> {{ error() }}</span>
+      </div>
+    }
+
+    @if (!cargando() && solicitud()) {
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <!-- Cabecera -->
+        <div class="bg-blue-50 p-6 border-b border-blue-100">
+          <div class="flex justify-between items-start">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-800 mb-1">Solicitud para: {{ solicitud()!.vacanteNombre }}</h1>
+              <p class="text-gray-600">Presentada el {{ solicitud()!.fecha | date:'dd/MM/yyyy' }}</p>
+            </div>
+            
+            <div>
+              @if (solicitud()!.estado === 0) {
+                <span class="inline-block px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 font-medium text-sm">
+                  Pendiente
+                </span>
+              } @else {
+                <span class="inline-block px-3 py-1 rounded-full bg-green-100 text-green-800 font-medium text-sm">
+                  Adjudicada
+                </span>
+              }
+            </div>
+          </div>
+        </div>
+        
+        <!-- Información del candidato -->
+        <div class="p-6 border-b border-gray-200">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Información del candidato</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p class="text-sm text-gray-600 mb-1">Nombre</p>
+              <p class="font-medium">{{ solicitud()!.nombreUsuario }}</p>
+            </div>
+            
+            <div>
+              <p class="text-sm text-gray-600 mb-1">Email</p>
+              <p class="font-medium">{{ solicitud()!.emailUsuario }}</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Detalles de la solicitud -->
+        <div class="p-6 border-b border-gray-200">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Detalles de la solicitud</h2>
+          
+          <div class="mb-6">
+            <p class="text-sm text-gray-600 mb-1">Comentarios del candidato</p>
+            <div class="bg-gray-50 p-4 rounded border border-gray-200">
+              <p>{{ solicitud()!.comentarios || 'El candidato no ha incluido comentarios.' }}</p>
+            </div>
+          </div>
+          
+          <div>
+            <p class="text-sm text-gray-600 mb-2">Currículum</p>
+            <a 
+              [href]="solicitud()!.curriculum" 
+              target="_blank" 
+              class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Ver CV completo
+            </a>
+          </div>
+        </div>
+        
+        <!-- Acciones -->
+        <div class="p-6 border-b border-gray-200 bg-gray-50">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Acciones</h2>
+          
+          @if (solicitud()!.estado === 0) {
+            <button 
+              (click)="adjudicar()" 
+              class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition"
+            >
+              Adjudicar solicitud
+            </button>
+            <p class="mt-2 text-sm text-gray-600">
+              Al adjudicar esta solicitud, estás indicando que has seleccionado a este candidato para la vacante.
+            </p>
+          } @else {
+            <div class="bg-green-100 border-l-4 border-green-500 p-4">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm text-green-800">
+                    Esta solicitud ya ha sido adjudicada.
+                  </p>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        
+        <!-- Responder al candidato (opcional) -->
+        <div class="p-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Responder al candidato</h2>
+          
+          @if (respuestaExitosa()) {
+            <div class="bg-green-100 border-l-4 border-green-500 p-4 mb-4">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm text-green-800">
+                    Tu respuesta ha sido enviada correctamente al candidato.
+                  </p>
+                </div>
+              </div>
+            </div>
+          }
+          
+          <form [formGroup]="respuestaForm" (ngSubmit)="enviarRespuesta()">
+            <div class="mb-4">
+              <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-1">Mensaje (será enviado por email al candidato)</label>
+              <textarea 
+                id="mensaje" 
+                formControlName="mensaje" 
+                rows="5" 
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Escribe tu respuesta al candidato..."
+              ></textarea>
+              
+              @if (respuestaForm.get('mensaje')?.invalid && respuestaForm.get('mensaje')?.touched) {
+                <p class="mt-1 text-sm text-red-600">
+                  El mensaje debe tener al menos 10 caracteres.
+                </p>
+              }
+            </div>
+            
+            <button 
+              type="submit" 
+              [disabled]="respuestaForm.invalid || enviandoRespuesta()"
+              class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              @if (enviandoRespuesta()) {
+                <span class="inline-block mr-2">
+                  <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </span>
+                Enviando...
+              } @else {
+                Enviar respuesta
+              }
+            </button>
+          </form>
+        </div>
+      </div>
+    }
+  </div>
+</div>

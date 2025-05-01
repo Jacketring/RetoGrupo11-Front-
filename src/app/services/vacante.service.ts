@@ -1,17 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { VacanteResponseDto } from '../interfaces/vacante-response-dto';
 import { VacanteRequestDto } from '../interfaces/vacante-request-dto';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class VacanteService {
-
-  private apiUrl = 'http://localhost:8445/vacante'
+  private apiUrl = 'http://localhost:8445/vacante';
   private http = inject(HttpClient);
-  
+
   getTodas(): Observable<VacanteResponseDto[]> {
     return this.http.get<VacanteResponseDto[]>(`${this.apiUrl}/todas`);
   }
@@ -29,14 +28,29 @@ export class VacanteService {
   }
 
   getMisVacantes(): Observable<VacanteResponseDto[]> {
-    return this.http.get<VacanteResponseDto[]>(`${this.apiUrl}/misvacantes`);
+    return this.http
+      .get<VacanteResponseDto[]>(`${this.apiUrl}/misvacantes`)
+      .pipe(
+        tap((response) =>
+          console.log('Respuesta original del servidor:', response)
+        )
+      );
   }
 
-  editarVacante(idVacante: number, vacante: VacanteRequestDto): Observable<any> {
+  editarVacante(
+    idVacante: number,
+    vacante: VacanteRequestDto
+  ): Observable<any> {
     return this.http.put(`${this.apiUrl}/modificar/${idVacante}`, vacante);
   }
 
   cancelarVacante(idVacante: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/cancelar/${idVacante}`,{});
+    return this.http
+      .put(`${this.apiUrl}/cancelar/${idVacante}`, {})
+      .pipe(
+        tap((response) =>
+          console.log('Respuesta de cancelar vacante:', response)
+        )
+      );
   }
 }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { SolicitudRequestDto } from '../interfaces/solicitud-request-dto';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SolicitudService {
   private http = inject(HttpClient);
@@ -43,5 +43,14 @@ export class SolicitudService {
   adjudicarSolicitud(id: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/adjudicar/${id}`, null);
   }
-  
+
+  postularVacante(
+    idVacante: number,
+    solicitud: SolicitudRequestDto
+  ): Observable<any> {
+    return this.http.post(
+      `${this.apiUrl}/usuario/solicitud/vacante/${idVacante}`,
+      solicitud
+    );
+  }
 }

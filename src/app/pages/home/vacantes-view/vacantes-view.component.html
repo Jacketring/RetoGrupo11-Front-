@@ -1,13 +1,13 @@
 <section class="py-8 px-4 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-semibold mb-4">Vacantes disponibles</h2>
-  
-    @if (vacantes.length > 0) {
-      <div class="grid md:grid-cols-3 gap-6">
-        @for (vacante of vacantes; track vacante.idVacante) {
-          <app-vacantes-card [vacante]="vacante" />
-        }
-      </div>
-    } @else {
-      <p class="text-gray-500">No hay vacantes disponibles en este momento.</p>
-    }
-  </section>
+  <h2 class="text-2xl font-semibold mb-4">Vacantes disponibles</h2>
+
+  @if (vacantes().length > 0) {
+    <div class="grid md:grid-cols-3 gap-6">
+      @for (vacante of vacantes(); track vacante.idVacante) {
+        <app-vacantes-card [vacante]="vacante" />
+      }
+    </div>
+  } @else {
+    <p class="text-gray-500">No hay vacantes disponibles en este momento.</p>
+  }
+</section>

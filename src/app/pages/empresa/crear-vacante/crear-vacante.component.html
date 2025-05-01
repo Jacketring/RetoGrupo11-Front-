@@ -1,55 +1,54 @@
-<div class="max-w-xl mx-auto p-6 bg-white shadow-md rounded">
-    <h2 class="text-2xl font-bold mb-4">Nueva Vacante</h2>
-  
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
-  
-      <div>
-        <label class="block text-sm font-medium">Nombre</label>
-        <input type="text" formControlName="nombre" class="input" />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium">Descripción</label>
-        <textarea formControlName="descripcion" class="input" rows="4"></textarea>
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium">Detalles</label>
-        <textarea formControlName="detalles" class="input" rows="4"></textarea>
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium">Salario</label>
-        <input type="number" formControlName="salario" class="input" />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium">Imagen</label>
-        <input type="text" formControlName="imagen" class="input" placeholder="URL de imagen o nombre de archivo" />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium">Categoría</label>
-        <select formControlName="nombreCategoria" class="input">
-          <option [ngValue]="null">-- Selecciona una categoría --</option>
-          @for (categoria of categorias; track categoria.idCategoria) {
-            <option [value]="categoria.nombre">{{ categoria.nombre }}</option> 
-          }
-        </select>
-      </div>
-  
-      <div class="flex items-center">
-        <input type="checkbox" formControlName="destacado" class="mr-2" />
-        <label class="text-sm font-medium">Destacar vacante</label>
-      </div>
-  
-      <button
-        type="submit"
-        [disabled]="form.invalid || loading"
-        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
-        {{ loading ? 'Creando...' : 'Crear Vacante' }}
-      </button>
-    </form>
-  </div>
-  
+<div class="admin-panel max-w-2xl mx-auto bg-white shadow-lg rounded-2xl p-8">
+  <h1 class="admin-title text-3xl font-bold text-gray-800 mb-2">Nueva Vacante</h1>
+  <p class="admin-subtitle text-gray-500 mb-6">Completa el formulario para registrar una nueva vacante:</p>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-5">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Nombre</label>
+      <input type="text" formControlName="nombre" class="input w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Descripción</label>
+      <textarea formControlName="descripcion" rows="4" class="input w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500"></textarea>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Detalles</label>
+      <textarea formControlName="detalles" rows="4" class="input w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500"></textarea>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Salario</label>
+      <input type="number" formControlName="salario" class="input w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Imagen</label>
+      <input type="text" formControlName="imagen" placeholder="URL de imagen o nombre de archivo" class="input w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Categoría</label>
+      <select formControlName="nombreCategoria" class="input w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500">
+        <option [ngValue]="null">-- Selecciona una categoría --</option>
+        @for (categoria of categorias; track categoria.idCategoria) {
+          <option [value]="categoria.nombre">{{ categoria.nombre }}</option> 
+        }
+      </select>
+    </div>
+
+    <div class="flex items-center">
+      <input type="checkbox" formControlName="destacado" class="mr-2 accent-blue-600" />
+      <label class="text-sm font-medium text-gray-700">Destacar vacante</label>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="form.invalid || loading"
+      class="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      {{ loading ? 'Creando...' : 'Crear Vacante' }}
+    </button>
+  </form>
+</div>
