@@ -1,49 +1,75 @@
-<div class="p-6">
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-800">Mis Solicitudes</h2>
+<div class="admin-container">
+  <div class="admin-header flex items-center justify-between pb-4 border-b border-gray-200">
+    <h2 class="admin-title text-2xl font-semibold text-gray-800">Mis Solicitudes</h2>
+  </div>
+
+  @if (error) {
+    <div class="bg-red-100 text-red-700 p-4 my-4 rounded-lg text-sm font-medium">
+      {{ error }}
     </div>
-  
-    @if (error) {
-      <div class="bg-red-100 text-red-700 p-3 rounded">{{ error }}</div>
-    }
-  
-    @if (solicitudes.length > 0) {
-      <table class="w-full text-sm text-left text-gray-700">
-        <thead class="bg-gray-100 text-xs uppercase">
+  }
+
+  @if (solicitudes.length > 0) {
+    <div class="admin-table-wrapper mt-6 overflow-x-auto">
+      <table class="admin-table w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
           <tr>
-            <th class="px-4 py-2">Vacante</th>
-            <th class="px-4 py-2">Empresa</th>
-            <th class="px-4 py-2">Currículum</th>
-            <th class="px-4 py-2">Fecha</th>
-            <th class="px-4 py-2">Estado</th>
-            <th class="px-4 py-2 text-right">Acciones</th>
+            <th scope="col" class="px-6 py-3">Vacante</th>
+            <th scope="col" class="px-6 py-3">Empresa</th>
+            <th scope="col" class="px-6 py-3">Currículum</th>
+            <th scope="col" class="px-6 py-3">Fecha</th>
+            <th scope="col" class="px-6 py-3">Estado</th>
+            <th scope="col" class="px-6 py-3 text-right">Acciones</th>
           </tr>
         </thead>
         <tbody>
           @for (solicitud of solicitudes; track solicitud.fecha) {
-            <tr class="border-b hover:bg-gray-50">
-              <td class="px-4 py-2">{{ solicitud.nombreVacante }}</td>
-              <td class="px-4 py-2">{{ solicitud.nombreEmpresa }}</td>
-              <td class="px-4 py-2">{{ solicitud.curriculum }}</td>
-              <td class="px-4 py-2">{{ solicitud.fecha | date: 'shortDate' }}</td>
-              <td class="px-4 py-2">
+            <tr class="bg-white border-b hover:bg-gray-50 transition-colors">
+              <td class="px-6 py-4 font-medium text-gray-900">{{ solicitud.nombreVacante }}</td>
+              <td class="px-6 py-4">{{ solicitud.nombreEmpresa }}</td>
+              <td class="px-6 py-4">{{ solicitud.curriculum }}</td>
+              <td class="px-6 py-4">{{ solicitud.fecha | date: 'shortDate' }}</td>
+              <td class="px-6 py-4">
                 <span [ngClass]="{
-                  'text-green-600': solicitud.estado === 1,
-                  'text-yellow-600': solicitud.estado === 0,
-                  'text-red-600': solicitud.estado === 2
+                  'text-green-600 font-semibold': solicitud.estado === 1,
+                  'text-yellow-600 font-semibold': solicitud.estado === 0,
+                  'text-red-600 font-semibold': solicitud.estado === 2
                 }">
                   {{ getEstadoTexto(solicitud.estado) }}
                 </span>
               </td>
-              <td class="px-4 py-2 text-right space-x-2">
-                <button (click)="verDetalle(solicitud)" class="text-blue-600 hover:underline">Ver detalle</button>
-                <button (click)="eliminarSolicitud(solicitud.idSolicitud)" class="text-red-600 hover:underline">Eliminar</button>
+              <td class="px-6 py-4 text-right space-x-2">
+                <button
+                  (click)="verDetalle(solicitud)"
+                  class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 transition-colors cursor-pointer"
+                  title="Ver detalle"
+                >
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Ver
+                </button>
+                <button
+                  (click)="eliminarSolicitud(solicitud.idSolicitud)"
+                  class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition-colors cursor-pointer"
+                  title="Eliminar"
+                >
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  Eliminar
+                </button>
               </td>
             </tr>
           }
         </tbody>
       </table>
-    } @else {
-      <p class="text-gray-500">No tienes solicitudes registradas.</p>
-    }
-  </div>
+    </div>
+  } @else {
+    <p class="text-gray-500 mt-4">No tienes solicitudes registradas.</p>
+  }
+</div>

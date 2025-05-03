@@ -7,38 +7,53 @@
         <div class="space-x-2">
           <button 
             [class]="filtroEstado() === 'todos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'" 
-            class="px-4 py-2 rounded-md text-sm font-medium transition"
+            class="px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer hover:opacity-90"
             (click)="cambiarFiltro('todos')">
             Todas
           </button>
           <button 
             [class]="filtroEstado() === 'pendientes' ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700'" 
-            class="px-4 py-2 rounded-md text-sm font-medium transition"
+            class="px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer hover:opacity-90"
             (click)="cambiarFiltro('pendientes')">
             Pendientes
           </button>
           <button 
             [class]="filtroEstado() === 'adjudicadas' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700'" 
-            class="px-4 py-2 rounded-md text-sm font-medium transition"
+            class="px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer hover:opacity-90"
             (click)="cambiarFiltro('adjudicadas')">
             Adjudicadas
           </button>
         </div>
       </div>
 
-      <div *ngIf="cargando()">Cargando...</div>
-      <div *ngIf="error()">{{ error() }}</div>
+      <div *ngIf="cargando()" class="text-sm text-gray-600 mb-2">Cargando...</div>
+      <div *ngIf="error()" class="text-sm text-red-600 mb-2">{{ error() }}</div>
 
-      <!-- Aquí puedes mostrar las solicitudes y el estado -->
-      <div *ngFor="let vacante of getVacanteKeys()">
-        <div *ngFor="let solicitud of getSolicitudesFiltradas(vacante)">
-          <div>
-            <p>{{ solicitud.nombreUsuario }}</p>
-            <p>{{ solicitud.fecha | date }}</p>
-            <button *ngIf="solicitud.estado === 0" (click)="adjudicar(solicitud.idSolicitud)">Adjudicar</button>
+      <!-- Lista de solicitudes -->
+      <div *ngFor="let vacante of getVacanteKeys()" class="mb-4">
+        <div *ngFor="let solicitud of getSolicitudesFiltradas(vacante)" class="p-4 bg-gray-100 rounded-md mb-2 shadow-sm">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="font-medium text-gray-800">{{ solicitud.nombreUsuario }}</p>
+              <p class="text-sm text-gray-500">{{ solicitud.fecha | date }}</p>
+            </div>
+            <div *ngIf="solicitud.estado === 0">
+              <button 
+                (click)="adjudicar(solicitud.idSolicitud)" 
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition-colors cursor-pointer"
+                title="Adjudicar">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M5 13l4 4L19 7" />
+                </svg>
+                Adjudicar
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

@@ -21,7 +21,7 @@ export const routes: Routes = [
     component: PublicLayoutComponent,
     children: [
     { path: '', component: VacantesViewComponent },
-      { path: 'vacantes', component: VacantesViewComponent, runGuardsAndResolvers: 'always' },
+      { path: 'vacantes', component: VacantesViewComponent},
 
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },

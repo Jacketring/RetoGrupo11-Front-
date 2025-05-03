@@ -1,39 +1,42 @@
-<nav class="navbar">
-  <div class="container">
-    <a routerLink="/" class="logo">Job Platform</a>
+<nav class="bg-white shadow-md">
+  <div class="container mx-auto flex items-center justify-between px-4 py-3">
+    <div class="flex items-center space-x-3">
+      <img src="/img/logo-reto.jpg" alt="Logo" class="w-12 h-12 rounded-full" />
+      <a routerLink="/" class="text-2xl font-bold text-gray-800">Job Platform</a>
+    </div>
 
-    <ul class="menu">
+    <ul class="flex space-x-4 items-center text-sm font-medium text-gray-700">
       @if (!auth.isAuthenticated() || auth.getRole() === 'CLIENTE') {
-        <li><a routerLink="/vacantes">Vacantes</a></li>
+        <li><a routerLink="/vacantes" class="hover:text-blue-600">Vacantes</a></li>
       }
 
       @if (!auth.isAuthenticated()) {
-        <li><a routerLink="/login">Iniciar sesión</a></li>
-        <li><a routerLink="/register">Registrarse</a></li>
+        <li><a routerLink="/login" class="hover:text-blue-600">Iniciar sesión</a></li>
+        <li><a routerLink="/register" class="hover:text-blue-600">Registrarse</a></li>
       }
 
       @if (auth.getRole() === 'CLIENTE') {
-        <li><a routerLink="/cliente/mis-solicitudes" class="highlight">🏠 Mi panel</a></li>
-        <li><a routerLink="/cliente/editar-perfil">Editar perfil</a></li>
-        <li><button (click)="logout()" class="logout">Cerrar sesión</button></li>
+        <li><a routerLink="/cliente/mis-solicitudes" class="text-blue-600 font-semibold">🏠 Mi panel</a></li>
+        <li><a routerLink="/cliente/editar-perfil" class="hover:text-blue-600">Editar perfil</a></li>
+        <li><button (click)="logout()" class="text-red-600 hover:underline">Cerrar sesión</button></li>
       }
 
       @if (auth.getRole() === 'EMPRESA') {
-        <li><a routerLink="/empresa" class="highlight">🏠 Panel Empresa</a></li>
-        <li><a routerLink="/empresa/vacante/nueva">Nueva vacante</a></li>
-        <li><a routerLink="/empresa/mis-vacantes">Mis vacantes</a></li>
-        <li><a routerLink="/empresa/solicitudes">Solicitudes</a></li>
-        <li><a routerLink="/empresa/datos">Mi empresa</a></li>
-        <li><button (click)="logout()" class="logout">Cerrar sesión</button></li>
+        <li><a routerLink="/empresa" class="text-blue-600 font-semibold">🏠 Panel Empresa</a></li>
+        <li><a routerLink="/empresa/vacante/nueva" class="hover:text-blue-600">Nueva vacante</a></li>
+        <li><a routerLink="/empresa/mis-vacantes" class="hover:text-blue-600">Mis vacantes</a></li>
+        <li><a routerLink="/empresa/solicitudes" class="hover:text-blue-600">Solicitudes</a></li>
+        <li><a routerLink="/empresa/datos" class="hover:text-blue-600">Mi empresa</a></li>
+        <li><button (click)="logout()" class="text-red-600 hover:underline">Cerrar sesión</button></li>
       }
 
       @if (auth.getRole() === 'ADMON') {
-        <li><a routerLink="/admin" class="highlight">🏠 Panel Admin</a></li>
-        <li><a routerLink="/admin/empresas">Empresas</a></li>
-        <li><a routerLink="/admin/categorias">Categorías</a></li>
-        <li><a routerLink="/admin/usuarios">Usuarios</a></li>
-        <li><a routerLink="/admin/admins">Administradores</a></li>
-        <li><button (click)="logout()" class="logout">Cerrar sesión</button></li>
+        <li><a routerLink="/admin" class="text-blue-600 font-semibold">🏠 Panel Admin</a></li>
+        <li><a routerLink="/admin/empresas" class="hover:text-blue-600">Empresas</a></li>
+        <li><a routerLink="/admin/categorias" class="hover:text-blue-600">Categorías</a></li>
+        <li><a routerLink="/admin/usuarios" class="hover:text-blue-600">Usuarios</a></li>
+        <li><a routerLink="/admin/admins" class="hover:text-blue-600">Administradores</a></li>
+        <li><button (click)="logout()" class="text-red-600 hover:underline">Cerrar sesión</button></li>
       }
     </ul>
   </div>
