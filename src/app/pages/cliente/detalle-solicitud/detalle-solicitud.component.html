@@ -1,60 +1,69 @@
-<div class="detalle-solicitud-container">
-  <h2 class="detalle-solicitud-title">Detalle de Solicitud</h2>
+<div class="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">Detalle de Solicitud</h2>
 
-  <div class="detalle-solicitud-info">
-    <div class="detalle-solicitud-field">
-      <strong>ID de Solicitud:</strong>
+  <div class="space-y-4 text-sm text-gray-700">
+    <div>
+      <strong class="block text-gray-600">ID de Solicitud:</strong>
       <span>{{ solicitud.idSolicitud }}</span>
     </div>
 
-    <div class="detalle-solicitud-field">
-      <strong>Fecha:</strong>
+    <div>
+      <strong class="block text-gray-600">Fecha:</strong>
       <span>{{ solicitud.fecha | date }}</span>
     </div>
 
-    <div class="detalle-solicitud-field">
-      <strong>Archivos:</strong>
-      <a [href]="solicitud.archivos" target="_blank">Ver Archivo</a>
+    <div>
+      <strong class="block text-gray-600">Archivos:</strong>
+      <a [href]="solicitud.archivos" target="_blank"
+         class="text-blue-600 hover:underline">Ver Archivo</a>
     </div>
 
-    <div class="detalle-solicitud-field">
-      <strong>Comentarios:</strong>
+    <div>
+      <strong class="block text-gray-600">Comentarios:</strong>
       <span>{{ solicitud.comentarios }}</span>
     </div>
 
-    <div class="detalle-solicitud-field">
-      <strong>Curriculum:</strong>
-      <a [href]="solicitud.curriculum" target="_blank">Ver Curriculum</a>
+    <div>
+      <strong class="block text-gray-600">Currículum:</strong>
+      <a [href]="solicitud.curriculum" target="_blank"
+         class="text-blue-600 hover:underline">Ver Currículum</a>
     </div>
 
-    <div class="detalle-solicitud-field">
-      <strong>Vacante:</strong>
+    <div>
+      <strong class="block text-gray-600">Vacante:</strong>
       <span>{{ solicitud.nombreVacante }}</span>
     </div>
 
-    <div class="detalle-solicitud-field">
-      <strong>Empresa:</strong>
+    <div>
+      <strong class="block text-gray-600">Empresa:</strong>
       <span>{{ solicitud.nombreEmpresa }}</span>
     </div>
 
-    <div class="detalle-solicitud-field">
-      <strong>Estado:</strong>
-      <span>{{ solicitud.estado === 1 ? 'Aprobada' : 'Pendiente' }}</span>
+    <div>
+      <strong class="block text-gray-600">Estado:</strong>
+      <span [ngClass]="{
+        'text-green-600 font-medium': solicitud.estado === 1,
+        'text-yellow-600 font-medium': solicitud.estado !== 1
+      }">
+        {{ solicitud.estado === 1 ? 'Aprobada' : 'Pendiente' }}
+      </span>
     </div>
 
-    <div class="detalle-solicitud-field">
-      <strong>Nombre Usuario:</strong>
+    <div>
+      <strong class="block text-gray-600">Nombre Usuario:</strong>
       <span>{{ solicitud.nombreUsuario }}</span>
     </div>
 
-    <div class="detalle-solicitud-field">
-      <strong>Email Usuario:</strong>
+    <div>
+      <strong class="block text-gray-600">Email Usuario:</strong>
       <span>{{ solicitud.emailUsuario }}</span>
     </div>
   </div>
 
-  <button (click)="goBack()" class="detalle-solicitud-button">
-    Volver
-  </button>
+  <div class="mt-6">
+    <button (click)="goBack()"
+            class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-4 py-2 rounded transition">
+      ← Volver
+    </button>
+  </div>
 </div>
-
